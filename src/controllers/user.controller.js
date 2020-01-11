@@ -6,7 +6,8 @@ module.exports = {
       const users = await User.find();
       return res.json(users);
     } catch (error) {
-      return res.status(400).json("Error: " + error);
+      const err = Errs.validate(error);
+      return err.call(res, err);
     }
   },
 

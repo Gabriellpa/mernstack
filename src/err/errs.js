@@ -26,9 +26,9 @@ function undefinedErr() {
   return {
     json: {
       succes: false,
-      message: "Internal Error!",
-      code: 500
+      message: "Internal Error!"
     },
+    code: 500,
     call: sendError
   };
 }
