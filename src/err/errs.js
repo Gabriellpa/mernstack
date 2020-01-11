@@ -5,7 +5,7 @@ module.exports = {
     try {
       const err = TypeErrs[error.name];
       if (!err) {
-        return undefinedErr();
+        return undefinedErr(error);
       }
       return {
         json: err[error.code].json,
@@ -13,7 +13,7 @@ module.exports = {
         call: sendError
       };
     } catch (error) {
-      return undefinedErr();
+      return undefinedErr(error);
     }
   }
 };
@@ -22,11 +22,12 @@ function sendError(res, err) {
   return res.status(err.code).json(err.json);
 }
 
-function undefinedErr() {
+function undefinedErr(error) {
   return {
     json: {
       succes: false,
-      message: "Internal Error!"
+      message: "Internal Error!",
+      error: error.message
     },
     code: 500,
     call: sendError

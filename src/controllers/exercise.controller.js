@@ -58,5 +58,16 @@ module.exports = {
       const err = Errs.validate(error);
       return err.call(res, err);
     }
+  },
+
+  delete: async (req, res) => {
+    const { id } = req.params;
+    try {
+      await Exercise.deleteOne({ _id: id });
+      return res.json(`Exercise deleted!`);
+    } catch (error) {
+      const err = Errs.validate(error);
+      return err.call(res, err);
+    }
   }
 };
