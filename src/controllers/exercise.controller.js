@@ -26,5 +26,9 @@ module.exports = {
     } catch (error) {
       return res.status(400).json("Error: " + error);
     }
+  },
+
+  findById: async (req, res) =>{
+
   }
 };
